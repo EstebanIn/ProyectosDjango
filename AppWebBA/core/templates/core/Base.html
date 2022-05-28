@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buenos Aires WebSite</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div>            
+            <nav>
+                <ul>
+                    <li><a href="{% url 'index' %}"> Inicio </a></li>
+                    <li><a href="{% url 'RegistroCliente' %}">Registrarse</a></li>
+                    <li><a href="{% url 'InicioSesion' %}">Ingresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div>
+        <hr>
+        <h2>Productos</h2>
+        <div class="productos">
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="img/lenovo_tablet.jpeg" alt="imagen producto">
+                    <div class="detalle">
+                        <h5>Lenovo</h5>
+                        <h2>Tablet</h2>
+                        <h3>$120.000</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="img/macbook.jpeg" alt="imagen producto">
+                    <div class="detalle">
+                        <h5>apple</h5>
+                        <h2>Macbook</h2>
+                        <h3>$1.500.000</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="img/surface.jpeg" alt="imagen producto">
+                    <div class="detalle">
+                        <h5>microsoft</h5>
+                        <h2>Surface</h2>
+                        <h3>$2.000.000</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="img/s9.jpeg" alt="imagen producto">
+                    <div class="detalle">
+                        <h5>samsung</h5>
+                        <h2>Galaxy s9</h2>
+                        <h3>$400.000</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="img/redmi.jpeg" alt="imagen producto">
+                    <div class="detalle">
+                        <h5>Xiaomi</h5>
+                        <h2>Redmi note 8</h2>
+                        <h3>$200.000</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    </div>
+    
+</body>
+</html>
