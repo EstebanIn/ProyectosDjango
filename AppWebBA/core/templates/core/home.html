@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="{% static 'core/css/home.css'%}">
+    <link href="{% static 'core/css/home.css'%}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
     <div class="text-center">
-        <h1></h1>
-        <img src="" alt="" class="imagen_central">
+        <h1>La Tienda de Tony Stark</h1>
+        <img class="imagen_central" src="{% static 'core/img/home.jpg'%}" alt="">
     </div>
 {% endblock content %}

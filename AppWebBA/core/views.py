@@ -8,9 +8,11 @@ from django.urls import reverse_lazy
 ## importar modelos y formularios
 from .models import MaestroProducto, MaestroUsuario, PerfilUsuario
 from .forms import IniciarSesionForm, MaestroProductoForm, RegistrarUsuarioForm, PerfilUsuarioForm
-## importar la libreria de webpay
-##from transbank.webpay.webpay_plus.transaction import Transaction, WebpayOptions
-import random
+## importar la libreria de webpay"""
+"""
+from transbank.error.transbank_error import TransbankError
+from transbank.webpay.webpay_plus.transaction import Transaction
+import random"""
 
 
 ## VISTAS RELACIONADAS CON LA WEBPAY
@@ -32,7 +34,6 @@ import random
 # Redcompra         4051 8842 3993 7763            Genera transacciones aprobadas (para operaciones que permiten débito Redcompra y prepago)
 # Redcompra         4511 3466 6003 7060            Genera transacciones aprobadas (para operaciones que permiten débito Redcompra y prepago)
 # Redcompra         5186 0085 4123 3829            Genera transacciones rechazadas (para operaciones que permiten débito Redcompra y prepago)
-"""
 
 @csrf_exempt
 def iniciar_pago(request):
@@ -42,13 +43,8 @@ def iniciar_pago(request):
     amount = random.randrange(10000, 1000000)
     return_url = 'http://127.0.0.1:8000/pago_exitoso/'
 
-    # response = Transaction.create(buy_order, session_id, amount, return_url)
-    commercecode = "597055555532"
-    apikey = "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
-
-    tx = Transaction(options=WebpayOptions(commerce_code=commercecode, api_key=apikey, integration_type="TEST"))
-    response = tx.create(buy_order, session_id, amount, return_url)
-    print(response['token'])
+    response = Transaction.create(buy_order, session_id, amount, return_url)
+    print(response.token)
 
     perfil = PerfilUsuario.objects.get(user=request.user)
     form = PerfilUsuarioForm()
@@ -59,8 +55,8 @@ def iniciar_pago(request):
         "amount": amount,
         "return_url": return_url,
         "response": response,
-        "token_ws": response['token'],
-        "url_tbk": response['url'],
+        "token_ws": response.token,
+        "url_tbk": response.url,
         "first_name": request.user.first_name,
         "last_name": request.user.last_name,
         "email": request.user.email,
@@ -69,6 +65,36 @@ def iniciar_pago(request):
     }
 
     return render(request, "core/iniciar_pago.html", context)
+
+@csrf_exempt
+def pago_exitoso(request):
+
+    if request.method == "POST":
+        token = request.POST.get("token_ws")
+        print("commit for token_ws: {}".format(token))
+        response = Transaction.commit(token=token)
+        print("response: {}".format(response))
+
+        user = User.objects.get(username=response.session_id)
+        perfil = PerfilUsuario.objects.get(user=user)
+        form = PerfilUsuarioForm()
+
+        context = {
+            "buy_order": response.buy_order,
+            "session_id": response.session_id,
+            "amount": response.amount,
+            "response": response,
+            "token_ws": token,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "email": user.email,
+            "rut": perfil.rut,
+            "direccion": perfil.direccion,
+        }
+
+        return render(request, "core/pago_exitoso.html", context)
+    
+    return redirect(home)
 
 @csrf_exempt
 def pago_exitoso(request):
@@ -104,7 +130,7 @@ def pago_exitoso(request):
     else:
         return redirect(home)
 
-"""
+
 
 # Create your views here.
 def home(request):

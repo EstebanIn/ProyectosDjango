@@ -6,23 +6,19 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Tienda Buenos Aires</h1>
+    <h1>Tienda de Tony Stark</h1>
     {% if list %}
         <div class="row text-center">
         {% for ve in list %}
-            <a href="{% url 'ficha' ve.idp %}">
+            <a href="{% url 'ficha' ve.patente %}">
                 <div class="tienda_auto_recuadro">
                     <div class="tienda_auto_recuadro_interior">
                         <img src="/media/{{ ve.imagen }}" class="tienda_auto_imagen" alt="">
                     </div>
                     <div>
-                        {{ ve.idp }}
+                        {{ ve.marca }}
                         <br>
-                        {{ ve.nomprod }}
-                        <br>
-                        {{ ve.descprod }}
-                        <br>
-                        {{ ve.precio }}
+                        {{ ve.modelo }}
                     </div>
                 </div>
             </a>
