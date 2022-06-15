@@ -1,6 +1,9 @@
+from tkinter import CASCADE
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+
 
 class MaestroUsuario(models.Model):
     rut = models.CharField(primary_key=True, max_length=20)
@@ -59,7 +62,16 @@ class BodegaStockProducto(models.Model):
     idb = models.IntegerField(primary_key=True)
     idp = models.ForeignKey('MaestroProducto', models.DO_NOTHING, db_column='idp')
     nrofac = models.ForeignKey('WebFactura', models.DO_NOTHING, db_column='nrofac', blank=True, null=True)
-    
+
+
     def __str__(self):
         return self.idb
+
+class PerfilUsuario(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    rut = models.CharField(max_length=80, blank=True, null=True, verbose_name="Rut")
+    direccion = models.CharField(max_length=80, blank=True, null=True, verbose_name="Direccion")
+
+    def __str__(self):
+        return f"{self.user.username} - {self.user.first_name} - {self.user.last_name} ({self.user.email})"
 
