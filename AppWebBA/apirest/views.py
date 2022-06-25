@@ -79,3 +79,4 @@ def login(request):
     token, created = Token.objects.get_or_create(user=user)
     print(f"Este es el token creado: '{token.key}'")
     return Response(token.key)
+

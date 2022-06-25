@@ -134,6 +134,7 @@ def pago_exitoso(request):
 
 # Create your views here.
 def home(request):
+    data = {'prod': MaestroProducto.objects.all().order_by('idp')}
     return render(request, 'core/home.html')
 
 def index(request):
@@ -164,7 +165,7 @@ def CerrarSesion(request):
     logout(request)
     return redirect(home)
 
-def registrar_usuario(request):
+def RegistroCliente(request):
     if request.method == 'POST':
         form = RegistrarUsuarioForm(request.POST)
         if form.is_valid():
@@ -174,7 +175,7 @@ def registrar_usuario(request):
             PerfilUsuario.objects.update_or_create(user=user, rut=rut, direccion=direccion)
             return redirect(InicioSesion)
     form = RegistrarUsuarioForm()
-    return render(request, "core/registrar_usuario.html", context={'form': form})
+    return render(request, "core/RegistroCliente.html", context={'form': form})
 
 def Perfil_Usuario(request):
     data = {"mesg": "", "form": PerfilUsuarioForm}
@@ -206,10 +207,12 @@ def Perfil_Usuario(request):
 
 
 ## catagolo
-def tienda(request):
-    data = {'list': MaestroProducto.objects.all().order_by('idp')}
-    return render(request, 'core/tienda.html', data)
-
+def Tienda(request, id):
+    MaestroProducto = MaestroProducto.objects.get(idp = id)
+    context = {
+        'MaestroProducto':MaestroProducto
+    }
+    return render(request, 'Ficha_producto.html', context)
 
 
 

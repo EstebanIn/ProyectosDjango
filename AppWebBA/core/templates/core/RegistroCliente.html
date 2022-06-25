@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+    <link href="{% static 'core/css/base.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+        <h1>Registrar Usuario</h1>
+        <div class="content container text-center">
+            <form method="POST" class="col-sm-12 col-md-6 col-lg-12">
+                {% csrf_token %} {{ form.as_MaestroUsuario }}
+                <div class="row borde-bootstrap-row">
+                    <div class="col-sm-6">
+                        <div class="col-sm-3">
+                        </div>
+                    <div class="form-group">
+                        <h5>Rut</h5>
+                        <input class="form-control" type="text" name="rut_cli" id="rut"
+                            aria-describedby="rut-help" placeholder="Ingresa tu RUT">
+                            <br>
+                            <small id="rut-help" class="form-text text-muted">
+                                Escribe tu RUT sin puntos y con guión, por ejemplo: 16560241-2
+                            </small>
+                    </div>
+                    <div class="form-group">
+                        <h5>Nombre</h5>
+                        <input class="form-control" type="text" name="nom_cli" id="nombres"
+                        placeholder="Escribe aqui tus nombres">
+                    </div>
+                    <div>
+                        <h5>Apellido</h5>
+                        <input class="form-control" type="text" name="ap_cli" id="apellidos"
+                        placeholder="Escribe aqui tus apellidos">
+                    </div>
+                    <div class="form-group">
+                        <h5>Correo</h5>
+                        <input class="form-control" type="email" name="email_cli" id="correo"
+                        aria-describedby="correo-help" placeholder="Escribe aquí tu correo">
+                        <br>
+                        <small id="correo-help" class="form-text text-muted">
+                            Escribe tu correo incluyendo: nombre, @ y dominio, por ejemplo: atorres@duocuc.cl
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <h5 for="direccion">Dirección</h5>
+                        <textarea class="form-control" name="direccion_cli" id="direccion" cols="60" rows="5" 
+                            aria-describedby="direccion-help"placeholder="Escribe aquí tu dirección"></textarea>
+                            <br>
+                            <small id="direccion-help" class="form-text text-muted">
+                            Escribe tu direción completa con: calle, número, comuna y región
+                        </small></div>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <h5 for="password">Contraseña</h5>
+                        <input class="form-control" type="password" name="pass_cli" id="password" 
+                            aria-describedby="password-help" placeholder="Escribe aquí tu contraseña">
+                        <br>
+                            <small id="password-help" class="form-text text-muted">
+                            La contraseña debe tener un mínimo de 10 caracteres y 
+                            debe contener al menos una mayúscula y un número
+                        </small>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <h5 for="password2">Repetir contraseña</h5>
+                        <input class="form-control" type="password" name="" id="password2" 
+                            placeholder="Repite aquí tu contraseña">
+                    </div>
+                </div>
+            </div>
+        </div>
+                {% if mesg %}
+                    <div id="form_message" class="alert alert-danger" role="alert">{{ mesg }}</div>
+                {% endif %}
+            </form>
+        </div>
+{% endblock content %}

@@ -8,13 +8,13 @@ label {
 }
 
 input {
-    width: 300px;
+    width: 500px;
 }
 
 form {
     text-align: left;
     margin:auto;
-    border: 1px solid blue;
+    border: 1px solid rgb(50, 44, 53);
     padding-top: 10px;
     padding-bottom: 10px;
 }

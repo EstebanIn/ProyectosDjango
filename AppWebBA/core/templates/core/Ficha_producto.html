@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+{% for pro in prod %}
+<!-- Products Start -->
+<section id="services" class="services section-bg">
+    <div class="container-fluid">
+    <div class="row row-sm">
+        <div class="col-md-6">
+                <li><img src="{{% pro.imagen_producto  %}}" alt=""></li>
+            <div class="_product-images">
+            </div>  
+            </div>
+        <div class="col-md-6">
+            <div class="_product-detail-content">
+                <p class="_p-name"> {{pro.nomprod}} </p>
+                <div class="_p-price-box">
+                <div class="p-list">
+                    <span> Precio: <i class="fa fa-inr"></i> <del> {{pro.precio}}  </del>   </span>
+                </div>
+                <div class="_p-add-cart">
+                    <div class="_p-qty">
+                        <span>Cantidad</span>
+                        <input type="number" name="qty" id="number" value="1" />
+                    </div>
+                </div>
+                <div class="_p-features">
+                    <span> Descripción del producto: </span>
+                    {{pro.descprod}}
+                </div>
+                <h4>Producto disponible</h4>
+                <form action="" method="post" accept-charset="utf-8">
+                    <ul class="spe_ul"></ul>
+                    <div class="_p-qty-and-cart">
+                        <div class="_p-add-cart">
+                            <button class="btn-theme btn buy-btn" tabindex="0">
+                                <a href="{% url iniciar_pago %}">
+                            <i class="fa fa-shopping-cart"></i></a></button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- Product End -->
+{% endfor %}
+{% endblock %}

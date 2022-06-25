@@ -20,32 +20,32 @@
 </head>
 <body>
     {% block navbar %}
+
+    
         <script>
             $(document).ready(function(){
-                set_nav_li("#inicio", "{% url 'home' %}", "{% static 'core/img/casco_cerrado.png' %}");
-                set_nav_li("#tienda", "{% url 'tienda' %}", "{% static 'core/img/bolsa.png' %}");
-                set_nav_li("#admsis", "{% url 'admin:index' %}", "{% static 'core/img/cohete.png' %}");
-                set_nav_li("#manpro", "{% url 'administrar_productos' 'ins' '-1' %}", "{% static 'core/img/starkind.png' %}");
-                set_nav_li("#regist", "{% url 'registrar_usuario' %}", "{% static 'core/img/guante.png' %}");
-                set_nav_li("#inises", "{% url 'iniciar_sesion' %}", "{% static 'core/img/casco_abierto.png' %}");
-                set_nav_li("#cerses", "{% url 'cerrar_sesion' %}", "{% static 'core/img/casco_abierto.png' %}");
-                set_nav_li("#perfil", "{% url 'perfil_usuario' %}", "{% static 'core/img/perfil.png' %}");
-                set_nav_li("#chpass", "{% url 'cambiar_password' %}", "{% static 'core/img/password.png' %}");
+                set_nav_li("#inicio", "{% url 'home' %}");
+                set_nav_li("#admsis", "{% url 'admin:index' %}");
+                set_nav_li("#manpro", "{% url 'administrar_productos' 'ins' '-1' %}");
+                set_nav_li("#regist", "{% url 'RegistroCliente' %}");
+                set_nav_li("#inises", "{% url 'InicioSesion' %}");
+                set_nav_li("#cerses", "{% url 'cerrar_sesion' %}");
+                set_nav_li("#perfil", "{% url 'perfil_usuario' %}");
+                set_nav_li("#chpass", "{% url 'cambiar_password' %}");
 
-                function set_nav_li(id, url, img) {
+                function set_nav_li(id, url) {
                     $(id).addClass('nav-item list-inline-item align-center nav_item_text');
                     name = $(id).html();
                     $(id).html('');
-                    $(id).append(`<a href="${url}"><img class="img_menu" src="${img}">${name}</a>`)
+                    $(id).append(`<a href="${url}">${name}</a>`)
                 }
             });
         </script>
-        <nav id="navbar">
+        <nav id="navbar" >
             <div id="nav">
                 <ul class="list-inline">
                     <!-- inicio menú para usuarios anónimos -->
                     <li id="inicio">Inicio</li>    
-                    <li id="tienda">Tienda</li>
                     <!-- fin menú para usuarios anónimos -->
 
                     {% if user.is_authenticated and user.is_staff %}
@@ -73,16 +73,14 @@
         <hr>
     {% endblock %}
 
-    <div class="content container">
         {% block content %}{% endblock %}
     </div>
 
     <footer>
         <div class="text-center">
             <hr>
-            <strong>Desarrollado por el profesor: Cristián Gómez Vega</strong>
             <br><br><br>
-            <span><a href="{% url 'poblar_bd' %}" class="btn btn-info btn-sm">Poblar Base de Datos</a></span>&nbsp&nbsp&nbsp
+            <span><a href="{% url 'poblarbd' %}" class="btn btn-info btn-sm">Poblar Base de Datos</a></span>&nbsp&nbsp&nbsp
             <span><a href="http://127.0.0.1:8000/admin" class="btn btn-info btn-sm">Administrar sistema</a></span>
         </div>
     </footer>
