@@ -1,0 +1,69 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+    <link href="{% static 'core/css/base.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+        <h1>SolicitudServicio</h1>
+        <div class="content container text-center">
+            <form method="POST" class="col-sm-12 col-md-6 col-lg-12">
+                {% csrf_token %} {{ form.WebSolicitudServicioForm }}
+                <div class="row borde-bootstrap-row">
+                    <div class="col-sm-6">
+                        <div class="col-sm-3">
+                        </div>
+                    <div class="form-group">
+                        <h5>Precio de la visita</h5>
+                        <input class="form-control" type="text" name="nross" id="nross"
+                            aria-describedby="rut-help" readonly placeholder="Ingresa tu RUT">
+                            <br>
+                            <small id="rut-help" class="form-text text-muted">
+                            </small>
+                    </div>
+                    <div class="form-group">
+                        <h5>Precio de la visita</h5> <!--qui dice que tiene que salir el precio de la visita y tiene que 
+                                                        ser un readonly no estoy seguro como se obtiene ese dato -->
+                        <input class="form-control" type="text" name="" id="">
+                    </div>
+                    <div>
+                        <h5>Tipo de solicitud</h5>
+                        <input class="form-control" type="text" name="tiposs" id="tiposs">
+                    </div>
+                    <div class="form-group">
+                        <h5 for="direccion">Descripcion</h5>
+                        <textarea class="form-control" name="descss" id="descss" cols="60" rows="5" 
+                            placeholder="Escribe aquí"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <h5>Fecha de visita </h5>
+                        <input class="form-control" type="date" name="fechavisita" id="fechavisita"
+                        <br>
+                    </div>
+
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <h5 for="password">Hora de la visita</h5>
+                        <input class="form-control" type="time" name="" id="" 
+                            placeholder="Escribe aquí la hora de visita">
+                        <br>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row borde-bootstrap-row">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="reset" class="btn btn-secondary">Limpiar</button>
+        </div>
+    </div>
+                {% if mesg %}
+                    <div id="form_message" class="alert alert-danger" role="alert">{{ mesg }}</div>
+                {% endif %}
+            </form>
+        </div>
+{% endblock content %}

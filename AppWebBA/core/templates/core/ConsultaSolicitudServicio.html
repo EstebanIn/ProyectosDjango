@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Tipo SS</th>
+        <th scope="col">Fecha visita</th>
+        <th scope="col">Hora visita</th>
+        <th scope="col">Técnico</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Estado SS</th>
+        <th scope="col">Opciones</th>
+       
+    </tr>
+    </thead>
+    <tbody>
+    {% if request.user.is_customer %}
+        {% for i in solicitudescli %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            
+                <td>{{i.id_cli.get_full_name}}</td>
+                {% if i.tipo_servicio == 'R' %}
+                <td>Reparacion</td>
+                {% elif i.tipo_servicio == 'M'%}
+                <td>Mantencion</td>
+                {% else %}
+                <td>Instalaci&oacute;n</td>
+                {% endif %}
+                <td>{{i.fecha_visita_solicitada}}</td>
+                <td>{{i.hora_visita_solicitada}}</td>
+                <td>{{i.id_tec.get_full_name}}</td>
+                <td>{{i.descripcion_requerimiento}}</td>
+                {% if i.estado_ss == 'A' %}
+                <td>Fecha Aceptada</td>
+                {% elif i.estado_ss == 'M' %}
+                <td>Nueva fecha propuesta</td>
+                <td><button class="btn btn-primary" id="{{i.numeross}}" href="{% url 'update_estadoss' i.numeross %}">Aceptar</button> <button class="btn btn-secondary" onclick="abrir_modal_edicion('{% url 'UpdateSolicitud' i.numeross %}')" >Modificar</button></tdC
+                {% elif i.estado_ss == 'FVA'%}
+                <td>Fecha acordada</td>
+                {% elif i.estado_ss == 'P'%}
+                <td>Pendiente...</td>
+                {% else %}
+                <td>Servicio realizado</td>
+                {% endif %}
+                <div class="text-center">
+                    <a href="{% url 'SolicitudServicio' %}" type="button" class="btn btn-primary">
+                        Ingresar nueva solicitud de servicio
+                    </a>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+{% endblock body %}

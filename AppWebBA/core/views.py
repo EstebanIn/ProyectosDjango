@@ -6,8 +6,8 @@ from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
 ## importar modelos y formularios
-from .models import MaestroProducto, MaestroUsuario, PerfilUsuario
-from .forms import IniciarSesionForm, MaestroProductoForm, RegistrarUsuarioForm, PerfilUsuarioForm
+from .models import MaestroProducto, MaestroUsuario, PerfilUsuario, WebSolicitudServicio
+from .forms import IniciarSesionForm, MaestroProductoForm, RegistrarUsuarioForm, PerfilUsuarioForm, WebSolicitudServicioForm
 ## importar la libreria de webpay"""
 """
 from transbank.error.transbank_error import TransbankError
@@ -212,9 +212,19 @@ def Tienda(request, id):
     context = {
         'MaestroProducto':MaestroProducto
     }
-    return render(request, 'Ficha_producto.html', context)
+    return render(request, 'core/Ficha_producto.html', context)
 
+## solicitud de servicio
 
+def SolicitudServicio(request):
+    user = MaestroUsuario.objects.get(id = request.user.rut)
+    solicitudes = WebSolicitudServicio.objects.all().order_by('id_cli__first_name')
+    solicitudescli = WebSolicitudServicio.objects.filter(id_cli = user)
+    context = {
+        'solicitudes':solicitudes,
+        'solicitudescli': solicitudescli
+    }
+    return render(request, 'core/SolicitudServicio.html', context)
 
 ### vistas de los productos
 def AdministrarProducto(request, action, id):

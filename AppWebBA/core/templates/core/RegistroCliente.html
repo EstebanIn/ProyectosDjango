@@ -72,9 +72,15 @@
                 </div>
             </div>
         </div>
+        <div class="row borde-bootstrap-row">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="reset" class="btn btn-secondary">Limpiar</button>
+        </div>
+    </div>
                 {% if mesg %}
                     <div id="form_message" class="alert alert-danger" role="alert">{{ mesg }}</div>
                 {% endif %}
             </form>
-        </div>
+        </div>  
 {% endblock content %}
