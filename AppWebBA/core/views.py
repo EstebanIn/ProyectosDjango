@@ -9,10 +9,10 @@ from django.urls import reverse_lazy
 from .models import MaestroProducto, MaestroUsuario, PerfilUsuario, WebSolicitudServicio
 from .forms import IniciarSesionForm, MaestroProductoForm, RegistrarUsuarioForm, PerfilUsuarioForm, WebSolicitudServicioForm
 ## importar la libreria de webpay"""
-"""
+
 from transbank.error.transbank_error import TransbankError
 from transbank.webpay.webpay_plus.transaction import Transaction
-import random"""
+import random
 
 
 ## VISTAS RELACIONADAS CON LA WEBPAY
@@ -144,7 +144,6 @@ def index(request):
 ## vistas crud de sesion
 def InicioSesion(request):
     data = {"mesg": "", "form": IniciarSesionForm()}
-
     if request.method == "POST":
         form = IniciarSesionForm(request.POST)
         if form.is_valid:
@@ -217,14 +216,7 @@ def Tienda(request, id):
 ## solicitud de servicio
 
 def SolicitudServicio(request):
-    user = MaestroUsuario.objects.get(id = request.user.rut)
-    solicitudes = WebSolicitudServicio.objects.all().order_by('id_cli__first_name')
-    solicitudescli = WebSolicitudServicio.objects.filter(id_cli = user)
-    context = {
-        'solicitudes':solicitudes,
-        'solicitudescli': solicitudescli
-    }
-    return render(request, 'core/SolicitudServicio.html', context)
+    return render(request, 'core/SolicitudServicio.html')
 
 ### vistas de los productos
 def AdministrarProducto(request, action, id):

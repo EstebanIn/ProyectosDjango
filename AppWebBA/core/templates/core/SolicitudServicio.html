@@ -15,22 +15,20 @@
                     <div class="col-sm-6">
                         <div class="col-sm-3">
                         </div>
-                    <div class="form-group">
-                        <h5>Precio de la visita</h5>
-                        <input class="form-control" type="text" name="nross" id="nross"
-                            aria-describedby="rut-help" readonly placeholder="Ingresa tu RUT">
-                            <br>
-                            <small id="rut-help" class="form-text text-muted">
-                            </small>
-                    </div>
+                    
                     <div class="form-group">
                         <h5>Precio de la visita</h5> <!--qui dice que tiene que salir el precio de la visita y tiene que 
                                                         ser un readonly no estoy seguro como se obtiene ese dato -->
-                        <input class="form-control" type="text" name="" id="">
+                        <input class="form-control" type="text" readonly name="" id="" placeholder="$25000">
                     </div>
                     <div>
                         <h5>Tipo de solicitud</h5>
-                        <input class="form-control" type="text" name="tiposs" id="tiposs">
+                        <select class="form-control">
+                            <option value="" >--Selecionar--</option>
+                            <option value="tiposs">Instalacion</option>
+                            <option value="tiposs">Reparacion</option>
+                            <option value="tiposs">Mantencion</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <h5 for="direccion">Descripcion</h5>
@@ -42,8 +40,6 @@
                         <input class="form-control" type="date" name="fechavisita" id="fechavisita"
                         <br>
                     </div>
-
-                    </div>
                     <div class="form-group">
                         <br>
                         <h5 for="password">Hora de la visita</h5>
@@ -51,15 +47,16 @@
                             placeholder="Escribe aquí la hora de visita">
                         <br>
                     </div>
+                    <div class="row borde-bootstrap-row">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-secondary">Limpiar</button>
+                    </div>
                 </div>
                 </div>
             </div>
         </div>
-        <div class="row borde-bootstrap-row">
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            &nbsp;&nbsp;&nbsp;
-            <button type="reset" class="btn btn-secondary">Limpiar</button>
-        </div>
+
     </div>
                 {% if mesg %}
                     <div id="form_message" class="alert alert-danger" role="alert">{{ mesg }}</div>

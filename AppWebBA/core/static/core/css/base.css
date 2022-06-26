@@ -656,7 +656,7 @@ a:hover {
 }
 
 .section-products #product-5 .part-1::before {
-    background: url("https://spzcdn03.akamaized.net/assets/uploads/productos/e5b0a-49660_main._ac_sl1500_v1524752369__thumbs.jpg") no-repeat center;
+    background: url("") no-repeat center;
     background-size: cover;
 }
 

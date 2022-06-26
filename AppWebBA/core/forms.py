@@ -13,7 +13,7 @@ class MaestroProductoForm(ModelForm):
             fields = ['idp', 'nomprod', 'descprod', 'precio']
 
 class IniciarSesionForm(Form):
-    username = forms.CharField(widget=forms.TextInput(), label="Correo")
+    username = forms.CharField(widget=forms.TextInput(), label="username")
     password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña")
     class Meta:
         fields = ['username', 'password']
@@ -22,8 +22,8 @@ class RegistrarUsuarioForm(UserCreationForm):
     rut = forms.CharField(max_length=80, required=True, label="Rut")
     direccion = forms.CharField(max_length=80, required=True, label="Direccion")
     class Meta:
-        model = MaestroUsuario
-        fields = ['rut','tipousu','nomusu','apeusu','correo','dirusu', 'pwd']
+        model = User
+        fields = ['username','first_name','last_name','email','rut','direccion']
 
 class PerfilUsuarioForm(Form):
     first_name = forms.CharField(max_length=150, required=True, label="Nombres") 
@@ -31,14 +31,21 @@ class PerfilUsuarioForm(Form):
     email = forms.CharField(max_length=260, required=True, label="Correo")
     rut = forms.CharField(max_length=80, required=False, label="Rut")
     direccion = forms.CharField(max_length=80, required=False, label="Direccion")
-    class Meta:
-        fields = '__all__'
+
 class WebSolicitudServicioForm(ModelForm):
     tiposs = forms.CharField(max_length=50)
     fechavisita = forms.DateField()
     descss = forms.CharField(max_length=200)
     estadoss = forms.CharField(max_length=50)
     class Meta:
-        model = WebSolicitudServicio
-        fields = ['tiposs','fechavisita','descss','estadoss']
+        fields = '__all__'
 
+
+##class WebSolicitudServicioForm(ModelForm):
+##    tiposs = forms.CharField(max_length=50)
+##    fechavisita = forms.DateField()
+##    descss = forms.CharField(max_length=200)
+##    estadoss = forms.CharField(max_length=50)
+##    class Meta:
+##        model = WebSolicitudServicio
+##        fields = ['tiposs','fechavisita','tiposs']
