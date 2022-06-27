@@ -13,10 +13,10 @@ class MaestroProductoForm(ModelForm):
             fields = ['idp', 'nomprod', 'descprod', 'precio']
 
 class IniciarSesionForm(Form):
-    username = forms.CharField(widget=forms.TextInput(), label="username")
-    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña")
+    correo = forms.CharField(widget=forms.TextInput(), label="correo")
+    pwd = forms.CharField(widget=forms.PasswordInput(), label="pwd")
     class Meta:
-        fields = ['username', 'password']
+        fields = ['correo', 'pwd']
 
 class RegistrarUsuarioForm(UserCreationForm):
     rut = forms.CharField(max_length=80, required=True, label="Rut")
@@ -34,7 +34,6 @@ class PerfilUsuarioForm(Form):
 
 class WebSolicitudServicioForm(ModelForm):
     tiposs = forms.CharField(max_length=50)
-    fechavisita = forms.DateField()
     descss = forms.CharField(max_length=200)
     estadoss = forms.CharField(max_length=50)
     class Meta:

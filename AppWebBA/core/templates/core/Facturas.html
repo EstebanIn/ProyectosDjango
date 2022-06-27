@@ -1,39 +1,41 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
-{% block body %}
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Nro Factura</th>
-            <th scope="col">Cliente</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Descripci&oacute;n</th>
-            <th scope="col">Monto</th>
-            <th scope="col">Nro GD</th>
-            <th scope="col">Estado GD</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for i in list %}
-            
-        <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td>{{i.rut_cliente.get_full_name}}</td>
-            <td>{{i.fechafac}}</td>
-            <td>{{i.descripcion}}</td>
-            <td>{{i.monto}}</td>
-            
-            <td>{{i.guiasdespacho_set.all.0.numeroGD}}</td>
-            {% if i.guiasdespacho_set.all.0.estadogd == 'B' %}
-            <td>En Bodega</td>
-            {% elif i.guiasdespacho_set.all.0.estadogd == 'D' %}
-            <td>Despachado</td>
-            {% elif i.guiasdespacho_set.all.0.estadogd == 'E' %}
-            <td>Entregado</td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-{% endblock body %}
+{% block content %}
+    <!-- tabla de productos -->
+    <h1 class="centro">Factura</h1>
+    <div style="text-align: center;">
+        <table class="table table-striped" style="margin-left: 3%;">
+        <center>
+            <thead>
+                <tr>
+                    <th scope="col">N° Factura</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Monto total</th>
+                    <th scope="col">Numero GD</th>
+                    <th scope="col">Estado GD</th>
+                    <th scope="col">Numero SS</th>
+                    <th scope="col">Estado SS</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for fac in Factura %}
+                <tr>
+                    <th scope="row">{{fac.nrofac}}</th>
+                    <td>{{fac.rutcli}}</td>
+                    <td>{{fac.fechafac}}</td>
+                    <td>{{fac.descfac}}</td>
+                    <td>{{fac.monto}}</td>
+                    <td>14</td>
+                    <td>Entregado</td>
+                    <td>144</td>
+                    <td>Cerrada</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+    </div>
+    <!-- Fin de tabla -->
+{% endblock content %}

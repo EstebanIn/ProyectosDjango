@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
 ## importar modelos y formularios
-from .models import MaestroProducto, MaestroUsuario, PerfilUsuario, WebSolicitudServicio
+from .models import MaestroProducto, MaestroUsuario, PerfilUsuario, WebSolicitudServicio, WebFactura
 from .forms import IniciarSesionForm, MaestroProductoForm, RegistrarUsuarioForm, PerfilUsuarioForm, WebSolicitudServicioForm
 ## importar la libreria de webpay"""
 
@@ -134,8 +134,8 @@ def pago_exitoso(request):
 
 # Create your views here.
 def home(request):
-    data = {'prod': MaestroProducto.objects.all().order_by('idp')}
-    return render(request, 'core/home.html')
+    data = {"prod": MaestroProducto.objects.all().order_by('idp')}
+    return render(request, 'core/home.html',data)
 
 def index(request):
     return render(request, 'core/index.html')
@@ -147,9 +147,9 @@ def InicioSesion(request):
     if request.method == "POST":
         form = IniciarSesionForm(request.POST)
         if form.is_valid:
-            username = request.POST.GET("username")
-            password = request.POST.GET("password")
-            user = authenticate(username=username, password=password)
+            correo = request.POST.GET("correo")
+            pwd = request.POST.GET("pwd")
+            user = authenticate(correo=correo, pwd=pwd)
             if user is not None:
                 if user.is_active:
                     login(request, user)
@@ -207,9 +207,10 @@ def Perfil_Usuario(request):
 
 ## catagolo
 def Tienda(request, id):
-    MaestroProducto = MaestroProducto.objects.get(idp = id)
+    
+    producto = MaestroProducto.objects.get(idp=id)
     context = {
-        'MaestroProducto':MaestroProducto
+        'producto': producto
     }
     return render(request, 'core/Ficha_producto.html', context)
 
@@ -256,7 +257,9 @@ def AdministrarProducto(request, action, id):
     return render(request, "core/administrar_productos.html", data)
 
 def Facturas(request):
-    return render(request, 'core/Facturas.html')
+    data = {"Factura": WebFactura.objects.all()}
+    return render(request, 'core/Facturas.html',data)
 
 def ConsultaSolicitudServicio(request):
-    return render(request, 'core/ConsultaSolicitudServicio.html')
+    data = {"datossol": WebSolicitudServicio.objects.all()}
+    return render(request, 'core/ConsultaSolicitudServicio.html',data)

@@ -2,32 +2,33 @@
 {% load static %}
 
 {% block content %}
-{% for pro in prod %}
+<div class="container">
+    <div class="row justify-content-center text-center">
+            <div class="col-md-8 col-lg-6">
+                    <div class="header">
+                            <h2>Productos Buenos Aires</h2>
+                    </div>
+            </div>
+    </div>
 <!-- Products Start -->
 <section id="services" class="services section-bg">
     <div class="container-fluid">
     <div class="row row-sm">
         <div class="col-md-6">
-                <li><img src="{{% pro.imagen_producto  %}}" alt=""></li>
+                <li><img src="{{producto.imagen}}" alt=""></li>
             <div class="_product-images">
             </div>  
             </div>
         <div class="col-md-6">
             <div class="_product-detail-content">
-                <p class="_p-name"> {{pro.nomprod}} </p>
+                <p class="_p-name"> {{producto.nomprod}} </p>
                 <div class="_p-price-box">
                 <div class="p-list">
-                    <span> Precio: <i class="fa fa-inr"></i> <del> {{pro.precio}}  </del>   </span>
-                </div>
-                <div class="_p-add-cart">
-                    <div class="_p-qty">
-                        <span>Cantidad</span>
-                        <input type="number" name="qty" id="number" value="1" />
-                    </div>
+                    <span> Precio: <i class="fa fa-inr"></i> $ {{producto.precio}}  </span>
                 </div>
                 <div class="_p-features">
                     <span> Descripción del producto: </span>
-                    {{pro.descprod}}
+                    {{producto.descprod}}
                 </div>
                 <h4>Producto disponible</h4>
                 <form action="" method="post" accept-charset="utf-8">
@@ -35,8 +36,8 @@
                     <div class="_p-qty-and-cart">
                         <div class="_p-add-cart">
                             <button class="btn-theme btn buy-btn" tabindex="0">
-                                <a href="{% url iniciar_pago %}">
-                            <i class="fa fa-shopping-cart"></i></a></button>
+                                <a href="{% url 'iniciar_pago' %}">
+                            <i class="fa fa-shopping-cart"></i></a>Comprar</button>
                         </div>
                     </div>
                 </form>
@@ -47,5 +48,4 @@
     </div>
 </section>
 <!-- Product End -->
-{% endfor %}
 {% endblock %}

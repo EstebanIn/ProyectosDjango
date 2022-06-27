@@ -22,6 +22,7 @@ class MaestroProducto(models.Model):
     nomprod = models.CharField(max_length=100)
     descprod = models.CharField(max_length=300)
     precio = models.IntegerField()
+    imagen = models.ImageField(upload_to="images/", default="sinfoto.jpg", null=False, blank=False, verbose_name="Imagen")
     
     def __str__(self):
         return self.idp
@@ -30,7 +31,6 @@ class WebFactura(models.Model):
     nrofac = models.IntegerField(primary_key=True)
     rutcli = models.ForeignKey(MaestroUsuario, models.DO_NOTHING, db_column='rutcli')
     idp = models.ForeignKey(MaestroProducto, models.DO_NOTHING, db_column='idp')
-    fechafac = models.DateField()
     descfac = models.CharField(max_length=300)
     monto = models.IntegerField()
     
@@ -41,7 +41,7 @@ class WebSolicitudServicio(models.Model):
     nross = models.IntegerField(primary_key=True)
     nrofac = models.ForeignKey(WebFactura, models.DO_NOTHING, db_column='nrofac')
     tiposs = models.CharField(max_length=50)
-    fechavisita = models.DateField()
+
     ruttec = models.ForeignKey(MaestroUsuario, models.DO_NOTHING, db_column='ruttec')
     descss = models.CharField(max_length=200)
     estadoss = models.CharField(max_length=50)

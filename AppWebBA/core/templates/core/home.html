@@ -16,112 +16,33 @@
                             </div>
                     </div>
             </div>
-            <div class="row">
-                <!--hasta aqui se borra!!!!!!!!!-->
-                    <!-- Single Product -->
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-5" class="single-product">
-                            <img class="card-img-top" src="{{pro.imagen_producto.url}}" alt="Card image cap" style="max-width: 500px; max-height: 175px;">
-                                <div class="part-2">
-                                    <h4 class="product-title">Alimento premium para perros</h4>
-                                        <h4 class="product-price">$19.990</h4>
-                                        <br>
-                                            <h6> DESCRIPCIÓN </h6>
-                                            <h8> Saco de 20kg marca Thor </h8>
-                                        <div class="btn-action">
-                                            <button class="btn btn-primary"><a href="{% url 'tienda' -1 %}">Ver Producto</a></button >
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-                    <!-- Single Product -->
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-5" class="single-product">
-                            <img class="card-img-top" src="{{pro.imagen_producto.url}}" alt="Card image cap" style="max-width: 500px; max-height: 175px;">
-                                <div class="part-2">
-                                    <h4 class="product-title">Alimento premium para perros</h4>
-                                        <h4 class="product-price">$19.990</h4>
-                                        <br>
-                                            <h6> DESCRIPCIÓN </h6>
-                                            <h8> Saco de 20kg marca Thor </h8>
-                                        <div class="btn-action">
-                                            <button class="btn btn-primary"><a href="{% url 'tienda' -1 %}">Ver Producto</a></button >
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-                    <!-- Single Product -->
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-5" class="single-product">
-                            <img class="card-img-top" src="{{pro.imagen_producto.url}}" alt="Card image cap" style="max-width: 500px; max-height: 175px;">
-                                <div class="part-2">
-                                    <h4 class="product-title">Alimento premium para perros</h4>
-                                        <h4 class="product-price">$19.990</h4>
-                                        <br>
-                                            <h6> DESCRIPCIÓN </h6>
-                                            <h8> Saco de 20kg marca Thor </h8>
-                                        <div class="btn-action">
-                                            <button class="btn btn-primary"><a href="{% url 'tienda' -1 %}">Ver Producto</a></button >
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-                    <!-- Single Product -->
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-5" class="single-product">
-                            <img class="card-img-top" src="{{pro.imagen_producto.url}}" alt="Card image cap" style="max-width: 500px; max-height: 175px;">
-                                <div class="part-2">
-                                    <h4 class="product-title">Alimento premium para perros</h4>
-                                        <h4 class="product-price">$19.990</h4>
-                                        <br>
-                                            <h6> DESCRIPCIÓN </h6>
-                                            <h8> Saco de 20kg marca Thor </h8>
-                                        <div class="btn-action">
-                                            <button class="btn btn-primary"><a href="{% url 'tienda' -1 %}">Ver Producto</a></button >
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-                    <!-- Single Product -->
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-5" class="single-product">
-                            <img class="card-img-top" src="{{pro.imagen_producto.url}}" alt="Card image cap" style="max-width: 500px; max-height: 175px;">
-                                <div class="part-2">
-                                    <h4 class="product-title">Alimento premium para perros</h4>
-                                        <h4 class="product-price">$19.990</h4>
-                                        <br>
-                                            <h6> DESCRIPCIÓN </h6>
-                                            <h8> Saco de 20kg marca Thor </h8>
-                                        <div class="btn-action">
-                                            <button class="btn btn-primary"><a href="{% url 'tienda' -1 %}">Ver Producto</a></button >
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-                <!--Borrar todo lo de arriba cuando este implementado la base de datos del MastroProductos-->
-                {% if prod %}
-                {% for pro in prod %}
-                            <!-- Single Product -->
-                            <div class="col-md-6 col-lg-4 col-xl-3">
-                                <div id="product-5" class="single-product">
-                                    <img class="card-img-top" src="{{pro.imagen_producto.url}}" alt="Card image cap" style="max-width: 500px; max-height: 175px;">
-                                        <div class="part-2">
-                                            <h4 class="product-title">{{pro.nomprod}}</h4>
-                                                <h4 class="product-price">{{pro.precio}}</h4>
-                                                <br>
-                                                    <h6> DESCRIPCIÓN </h6>
-                                                    <h8> {{pro.descprod}} </h8>
-                                                <div class="btn-action d-flex justify-content-center">
-                                                    <!-- aqui se llama a la url del producto que sera llamada por su idp se estandariza con un -1 -->
-                                                    <button class="btn btn-primary"><a href="{% url 'tienda' pro.id %}">Ver Producto</a></button >
-                                                </div>
-                                        </div>
-                                </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-    </div>
+{% if prod %}
+<div class="row">
+{% for pro in prod %}
 
+<!-- Single Product -->
+<div class="col-md-6 col-lg-4 col-xl-3">
+<div id="product-5" class="single-product">
+<img class="card-img-top" src="{{pro.imagen_producto.url}}" alt="Card image cap" style="max-width: 500px; max-height: 175px;">
+</div>
+<div class="part-2">
+<h4 class="product-title">{{pro.nomprod}}</h4>
+<h4 class="product-price">{{pro.precio}}</h4>
+<br>
+<h6> DESCRIPCIÓN </h6>
+    <h8> {{pro.descprod}} </h8>
+</div>
+<div class="btn-action d-flex justify-content-center">
+<!-- aqui se llama a la url del producto que sera llamada por su idp se estandariza con un  -->
+<button class="btn btn-primary"><a href="{% url 'Tienda' pro.idp %}">Ver Producto</a></button>
+
+</div>
+
+</div>
+{% endfor %}
+
+</div>
+{% endif %}
 </section>
 
 {% endblock content %}
